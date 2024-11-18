@@ -1,0 +1,30 @@
+{
+  "name": "remix_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx remix-serve build/server/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@clerk/remix": "^4.2.48",
+    "@neondatabase/serverless": "^0.10.3",
+    "@remix-run/node": "^2.13.1",
+    "@remix-run/react": "^2.14.0",
+    "@remix-run/serve": "^2.13.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.36.2",
+    "isbot": "^4.4.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.13.1",
+    "vite": "^5.4.10"
+  }
+}

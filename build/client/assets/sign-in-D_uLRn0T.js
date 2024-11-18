@@ -1,0 +1,1 @@
+import{j as s}from"./components-BCDCSGm0.js";import{d as t}from"./index-NhthBudf.js";import"./browser-JwG-366k.js";function n(){return s.jsxs("div",{className:"flex justify-center py-24",children:["Please sign in.",s.jsx(t.SignIn,{})]})}export{n as default};
