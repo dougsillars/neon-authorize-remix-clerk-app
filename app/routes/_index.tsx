@@ -6,7 +6,7 @@ import { useLoaderData } from '@remix-run/react';
 import React from 'react';
 import { useState } from 'react';
 import { neon } from '@neondatabase/serverless';
-import type { Todo } from '../schema';
+import type { LoginHistory } from '../schema';
 
 
 
@@ -27,15 +27,14 @@ export const loader: LoaderFunction = async (args) => {
                 authToken,
             });
 
-    // const result = await getDb(authToken,DATABASE_AUTHENTICATED_URL)(
-    //   `INSERT INTO login_history ("user_id") VALUES ($1) RETURNING *`,[userId]);
-    const todosResponse = await sql(`INSERT INTO login_history ("user_id") VALUES ($1) RETURNING *`,[userId]);
+
+    const loginResponse = await sql(`INSERT INTO login_history ("user_id") VALUES ($1) RETURNING *`,[userId]);
     
       // Retrieve last 10 logins
   const last10LoginsResponse = await sql(`SELECT * FROM login_history WHERE user_id = $1 ORDER BY login_at DESC LIMIT 10`, [userId]);
 
-    console.log(`Todos Response: ${JSON.stringify(todosResponse)}`);
-    return last10LoginsResponse as Array<Todo>;
+    console.log(`loginResponse: ${JSON.stringify(loginResponse)}`);
+    return last10LoginsResponse as Array<LoginHistory>;
         }
         catch (error) {
             console.error(`Error inserting into login_history table: ${error.message}`);
@@ -46,7 +45,7 @@ export const loader: LoaderFunction = async (args) => {
 
 
 export default function Index() {
-  const todos = useLoaderData();
+  const logins = useLoaderData();
 
   return (
     <>
@@ -58,9 +57,9 @@ export default function Index() {
 
         <div>
           <h1>Recent Logins</h1>
-              {todos?.map((todo) => (
-            <li key={todo.id}>
-              {todo.user_id} login at: {todo.login_at}
+              {logins?.map((logins) => (
+            <li key={logins.id}>
+              {logins.user_id} login at: {logins.login_at}
             </li>
               ))}
          

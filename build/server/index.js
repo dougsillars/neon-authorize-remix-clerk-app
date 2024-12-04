@@ -184,9 +184,9 @@ const loader$2 = async (args) => {
     const sql2 = neon(DATABASE_AUTHENTICATED_URL ?? "", {
       authToken
     });
-    const todosResponse = await sql2(`INSERT INTO login_history ("user_id") VALUES ($1) RETURNING *`, [userId]);
+    const loginResponse = await sql2(`INSERT INTO login_history ("user_id") VALUES ($1) RETURNING *`, [userId]);
     const last10LoginsResponse = await sql2(`SELECT * FROM login_history WHERE user_id = $1 ORDER BY login_at DESC LIMIT 10`, [userId]);
-    console.log(`Todos Response: ${JSON.stringify(todosResponse)}`);
+    console.log(`loginResponse: ${JSON.stringify(loginResponse)}`);
     return last10LoginsResponse;
   } catch (error) {
     console.error(`Error inserting into login_history table: ${error.message}`);
@@ -195,7 +195,7 @@ const loader$2 = async (args) => {
   }
 };
 function Index() {
-  const todos = useLoaderData();
+  const logins = useLoaderData();
   return /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsxs("div", { children: [
     /* @__PURE__ */ jsx("h1", { children: "Signed in" }),
     /* @__PURE__ */ jsx("p", { children: "You are signed in!" }),
@@ -205,11 +205,11 @@ function Index() {
     ] }),
     /* @__PURE__ */ jsxs("div", { children: [
       /* @__PURE__ */ jsx("h1", { children: "Recent Logins" }),
-      todos == null ? void 0 : todos.map((todo) => /* @__PURE__ */ jsxs("li", { children: [
-        todo.user_id,
+      logins == null ? void 0 : logins.map((logins2) => /* @__PURE__ */ jsxs("li", { children: [
+        logins2.user_id,
         " login at: ",
-        todo.login_at
-      ] }, todo.id))
+        logins2.login_at
+      ] }, logins2.id))
     ] }),
     /* @__PURE__ */ jsx("p", { children: /* @__PURE__ */ jsx(SignOutButton, { children: " Sign Out" }) })
   ] }) });
@@ -272,7 +272,7 @@ const route5 = /* @__PURE__ */ Object.freeze(/* @__PURE__ */ Object.defineProper
   default: Page,
   loader
 }, Symbol.toStringTag, { value: "Module" }));
-const serverManifest = { "entry": { "module": "/assets/entry.client-DZgfouxx.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/browser-JwG-366k.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/root-A6_3nTWl.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/browser-JwG-366k.js", "/assets/index-NhthBudf.js"], "css": [] }, "routes/sign-in": { "id": "routes/sign-in", "parentId": "root", "path": "sign-in", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/sign-in-D_uLRn0T.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/index-NhthBudf.js", "/assets/browser-JwG-366k.js"], "css": [] }, "routes/sign-up": { "id": "routes/sign-up", "parentId": "root", "path": "sign-up", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/sign-up-D_uLRn0T.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/index-NhthBudf.js", "/assets/browser-JwG-366k.js"], "css": [] }, "routes/_index": { "id": "routes/_index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/_index-BSCG7FFI.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/index-NhthBudf.js", "/assets/browser-JwG-366k.js"], "css": [] }, "routes/ciient": { "id": "routes/ciient", "parentId": "root", "path": "ciient", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/ciient-DQu5dl6f.js", "imports": ["/assets/components-BCDCSGm0.js"], "css": [] }, "routes/dbtest": { "id": "routes/dbtest", "parentId": "root", "path": "dbtest", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/dbtest-IEet7w0m.js", "imports": ["/assets/components-BCDCSGm0.js"], "css": [] } }, "url": "/assets/manifest-59398e28.js", "version": "59398e28" };
+const serverManifest = { "entry": { "module": "/assets/entry.client-DZgfouxx.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/browser-JwG-366k.js"], "css": [] }, "routes": { "root": { "id": "root", "parentId": void 0, "path": "", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/root-A6_3nTWl.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/browser-JwG-366k.js", "/assets/index-NhthBudf.js"], "css": [] }, "routes/sign-in": { "id": "routes/sign-in", "parentId": "root", "path": "sign-in", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/sign-in-D_uLRn0T.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/index-NhthBudf.js", "/assets/browser-JwG-366k.js"], "css": [] }, "routes/sign-up": { "id": "routes/sign-up", "parentId": "root", "path": "sign-up", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": false, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/sign-up-D_uLRn0T.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/index-NhthBudf.js", "/assets/browser-JwG-366k.js"], "css": [] }, "routes/_index": { "id": "routes/_index", "parentId": "root", "path": void 0, "index": true, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/_index-Bh0K6LUN.js", "imports": ["/assets/components-BCDCSGm0.js", "/assets/index-NhthBudf.js", "/assets/browser-JwG-366k.js"], "css": [] }, "routes/ciient": { "id": "routes/ciient", "parentId": "root", "path": "ciient", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/ciient-DQu5dl6f.js", "imports": ["/assets/components-BCDCSGm0.js"], "css": [] }, "routes/dbtest": { "id": "routes/dbtest", "parentId": "root", "path": "dbtest", "index": void 0, "caseSensitive": void 0, "hasAction": false, "hasLoader": true, "hasClientAction": false, "hasClientLoader": false, "hasErrorBoundary": false, "module": "/assets/dbtest-IEet7w0m.js", "imports": ["/assets/components-BCDCSGm0.js"], "css": [] } }, "url": "/assets/manifest-d2cb3d83.js", "version": "d2cb3d83" };
 const mode = "production";
 const assetsBuildDirectory = "build/client";
 const basename = "/";
